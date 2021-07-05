@@ -1,29 +1,24 @@
-package com.example.student.controller
+package com.example.analyzer.controller
 
+import com.example.analyzer.domain.Task
+import com.example.analyzer.dto.DocumentDTO
+import com.example.analyzer.event.Producer
+import com.example.analyzer.repository.TaskRepository
+import com.example.analyzer.utils.Const
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import com.example.student.domain.Document
-import com.example.student.domain.Task
-import com.example.student.dto.DocumentDTO
-import com.example.student.event.Producer
-import com.example.student.repository.DocumentRepository
-import com.example.student.utils.Const
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.net.URL
 
 @RestController
-@RequestMapping("/student")
-class StudentController(
-    private val documentRepository: DocumentRepository,
+@RequestMapping("/analyzer")
+class AnalyzerController (
+    private val taskRepository: TaskRepository,
     private val producer: Producer
 ) {
-    @GetMapping("/documents")
-    fun getDocuments(): ResponseEntity<List<Document>> =
-        ResponseEntity(documentRepository.findAll(), HttpStatus.OK)
-
-    @GetMapping("/tasks")
+    @GetMapping("/tasks/{idTask}")
     fun getTasks(): ResponseEntity<List<Task>> {
         val response = URL(Const().URL_TASKS).readText(Charsets.UTF_8)
         val tasks:List<Task> = jacksonObjectMapper().readValue(response)

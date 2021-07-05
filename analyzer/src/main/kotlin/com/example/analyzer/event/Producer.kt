@@ -1,11 +1,11 @@
-package com.example.student.event
+package com.example.analyzer.event
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.example.student.domain.Document
-import com.example.student.dto.DocumentDTO
-import com.example.student.dto.SubmitDocumentDTO
-import com.example.student.repository.DocumentRepository
-import com.example.student.utils.Const
+import com.example.analyzer.domain.Document
+import com.example.analyzer.dto.DocumentDTO
+import com.example.analyzer.dto.SubmitDocumentDTO
+import com.example.analyzer.repository.DocumentRepository
+import com.example.analyzer.utils.Const
 import org.slf4j.LoggerFactory
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.stereotype.Component
@@ -32,6 +32,6 @@ class Producer(
         val json = jacksonObjectMapper().writeValueAsString(submitDocumentDTO)
         logger.info(String.format("Registering document", document))
         logger.info(String.format("Sending document to kafka"))
-        kafkaTemplate.send(Const().TOPIC_DOCUMENT_SEND, json)
+        kafkaTemplate.send(Const().TOPIC_DOCUMENT_RECEIVE, json)
     }
 }

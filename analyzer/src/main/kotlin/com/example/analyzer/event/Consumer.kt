@@ -1,10 +1,10 @@
-package com.example.student.event
+package com.example.analyzer.event
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import com.example.student.domain.Task
-import com.example.student.dto.NotificationDTO
-import com.example.student.dto.TaskDTO
+import com.example.analyzer.domain.Task
+import com.example.analyzer.dto.NotificationDTO
+import com.example.analyzer.dto.TaskDTO
 import org.slf4j.LoggerFactory
 import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.messaging.handler.annotation.Payload

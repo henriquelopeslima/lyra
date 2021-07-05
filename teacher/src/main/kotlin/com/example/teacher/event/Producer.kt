@@ -16,7 +16,7 @@ class Producer(
 
     fun notifyStudent(notificationDTO: NotificationDTO) {
         val json = jacksonObjectMapper().writeValueAsString(notificationDTO)
-        logger.info(String.format("Sending document..."))
+        logger.info(String.format("Sending document to kafka"))
         kafkaTemplate.send(Const().TOPIC_NOTIFICATION_STUDENT_SEND, json)
     }
 }

@@ -29,46 +29,42 @@ class Consumer(
             val submitDocumentDTO:SubmitDocumentDTO = jacksonObjectMapper().readValue(payload)
             val documentDTO = submitDocumentDTO.documentDTO
             val task: Task? = taskRepository.findByIdOrNull(submitDocumentDTO.idTask)
+
             if(task == null){
-                val notificationStudent = NotificationDTO(
-                    "Not found task by id: ${submitDocumentDTO.idTask}"
-                )
+                val notificationStudent = NotificationDTO("Not found task by id: ${submitDocumentDTO.idTask}")
                 producer.notifyStudent(notificationStudent)
                 return
             }
+
             val document = Document(
                 documentDTO.id,
                 documentDTO.nameStudent,
                 content = documentDTO.content,
                 dateSubmit = documentDTO.dateSubmit
             )
+
             if (documentDTO.dateSubmit > task.dateFinalSubmit) {
-                val notificationStudent = NotificationDTO(
-                    "Task by ${document.id} was sent after the deadline and refused"
-                )
+                val notificationStudent = NotificationDTO("Task by ${document.id} was sent after the deadline and refused")
                 producer.notifyStudent(notificationStudent)
                 return
             }
+
             documentRepository.save(document)
             task.documents.add(document)
             taskRepository.save(task)
-            val notificationStudent = NotificationDTO(
-                "Task registered!"
-            )
+
+            val notificationStudent = NotificationDTO("Task registered!")
+
             producer.notifyStudent(notificationStudent)
         }
         catch (e:ConstraintViolationException) {
             logger.error("Constraint violation exception - {}", e.message)
-            val notificationStudent = NotificationDTO(
-                "Error processing job submission"
-            )
+            val notificationStudent = NotificationDTO("Error processing job submission")
             producer.notifyStudent(notificationStudent)
         }
         catch(e:Exception) {
             logger.error("Error processing job submission {}", e.message)
-            val notificationStudent = NotificationDTO(
-                "Error processing job submission"
-            )
+            val notificationStudent = NotificationDTO("Error processing job submission")
             producer.notifyStudent(notificationStudent)
         }
     }

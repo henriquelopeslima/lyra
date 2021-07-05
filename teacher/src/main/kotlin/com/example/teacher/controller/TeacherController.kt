@@ -29,9 +29,7 @@ class TeacherController(
             dateFinalSubmit = taskDTO.dateFinalSubmit
         ))
         logger.info("The task has been registered")
-        val notificationDTO = NotificationDTO(
-            "The task ${taskDTO.title} - ${(formatter.format(taskDTO.dateFinalSubmit))}(deadline) was registered by the teacher"
-        )
+        val notificationDTO = NotificationDTO("The task ${taskDTO.title} - ${(formatter.format(taskDTO.dateFinalSubmit))}(deadline) was registered by the teacher")
         producer.notifyStudent(notificationDTO)
     }
 
