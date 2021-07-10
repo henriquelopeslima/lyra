@@ -9,6 +9,16 @@ Content-Type: application/json
 }
 
 ###
+POST http://localhost:10020/teacher/createTask
+Content-Type: application/json
+
+{
+  "title": "task B",
+  "description": "description of task B",
+  "dateFinalSubmit": "2021-06-30T00:00:00"
+}
+
+###
 GET http://localhost:10020/teacher/tasks
 Content-Type: application/json
 

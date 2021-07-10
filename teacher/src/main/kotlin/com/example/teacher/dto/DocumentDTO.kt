@@ -8,5 +8,6 @@ data class DocumentDTO(
     val id:Int,
     val nameStudent:String,
     val content:String,
+    val grade:Int?,
     val dateSubmit:Date
 )

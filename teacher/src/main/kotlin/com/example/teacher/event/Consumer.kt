@@ -3,6 +3,7 @@ package com.example.teacher.event
 import com.example.teacher.domain.Document
 import com.example.teacher.domain.Task
 import com.example.teacher.dto.NotificationDTO
+import com.example.teacher.dto.ResultDTO
 import com.example.teacher.dto.SubmitDocumentDTO
 import com.example.teacher.repository.DocumentRepository
 import com.example.teacher.repository.TaskRepository
@@ -23,7 +24,7 @@ class Consumer(
 ) {
     private val logger = LoggerFactory.getLogger(Consumer::class.java)
 
-    @KafkaListener(topics = ["submitted_document"], groupId = "group_id")
+    @KafkaListener(topics = ["submitted_document"])
     fun submittedDocument(@Payload payload: String){
         try {
             val submitDocumentDTO:SubmitDocumentDTO = jacksonObjectMapper().readValue(payload)
@@ -67,5 +68,20 @@ class Consumer(
             val notificationStudent = NotificationDTO("Error processing job submission")
             producer.notifyStudent(notificationStudent)
         }
+    }
+
+    @KafkaListener(topics = ["task_analyzed"])
+    fun notification(@Payload payload: String) {
+        val resultDTO:ResultDTO = jacksonObjectMapper().readValue(payload)
+        logger.info("Task analyzed => {}", resultDTO)
+        taskRepository.save(Task(
+            id = resultDTO.taskDTO.id,
+            title = resultDTO.taskDTO.title,
+            description = resultDTO.taskDTO.description,
+            dateFinalSubmit = resultDTO.taskDTO.dateFinalSubmit,
+            documents = resultDTO.taskDTO.documents as MutableList<Document>,
+            status = resultDTO.taskDTO.status,
+            average = resultDTO.average
+        ))
     }
 }

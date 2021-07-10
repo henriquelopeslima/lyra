@@ -8,7 +8,10 @@ data class Document(
     @Id
     val id:Int,
     val nameStudent:String,
-    val isPlagiary: Boolean = false,
+    var isPlagiary: Boolean = false,
+    var grade:Int?,
     val content:String,
     val dateSubmit: Date
-)
+) {
+    override fun toString() = "Document (id: $id, name student: $nameStudent, plagiary: $isPlagiary, grade: $grade content: $content, date of submit: $dateSubmit)"
+}
