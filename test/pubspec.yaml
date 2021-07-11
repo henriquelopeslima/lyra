@@ -1,0 +1,13 @@
+name: test
+description: A simple command-line application for to test the application Lyra.
+version: 1.0.0
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+dev_dependencies:
+  pedantic: ^1.10.0
+dependencies: 
+  dio: ^4.0.0
+  http: ^0.13.3
+  intl: ^0.17.0

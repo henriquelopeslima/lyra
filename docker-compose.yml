@@ -74,6 +74,19 @@ services:
     volumes:
       - kafka-persistence:/bitnami/kafka
 
+  tests:
+    stdin_open: true      # docker run -i
+    tty: true             # docker run -t
+    container_name: tests
+    build:
+      context: ./test
+    networks:
+      kafka-net:
+    depends_on:
+      - kafka
+    links:
+      - "kafka:kafka"      
+
 volumes:
   kafka-persistence:
   zookeeper-persistence:
