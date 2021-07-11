@@ -25,11 +25,13 @@ class Consumer (
         try {
             var amount: Int? = 0
 
+            logger.info("task => id:${taskDTO.id} title:${taskDTO.title}")
+
             taskDTO.documents?.forEach{ it ->
                 it.grade = grade()
                 it.isPlagiary = isPlagiary()
-                amount = it.grade!! + amount!!
-                logger.info("doc => name:${it.nameStudent} grade:${it.grade} isPlagiary:${it.isPlagiary}")
+                amount = if (it.isPlagiary) it.grade!! + amount!! else amount
+                logger.info("document => name:${it.nameStudent} grade:${it.grade} isPlagiary:${it.isPlagiary}")
             }
 
             val total = taskDTO.documents?.filter { it -> it.isPlagiary }?.count()

@@ -5,9 +5,11 @@ import com.fasterxml.jackson.module.kotlin.readValue
 import com.example.student.domain.Document
 import com.example.student.domain.Task
 import com.example.student.dto.DocumentDTO
+import com.example.student.event.Consumer
 import com.example.student.event.Producer
 import com.example.student.repository.DocumentRepository
 import com.example.student.utils.Const
+import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*

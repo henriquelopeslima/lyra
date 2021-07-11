@@ -1,6 +1,7 @@
 package com.example.student.domain
 
 import com.example.student.domain.enum.TaskType
+import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonIgnore
 import java.util.*
 import javax.persistence.*
@@ -14,8 +15,10 @@ data class Task(
     @Transient
     @JsonIgnore
     val documents:List<Document>? = null,
+    @Transient
     @JsonIgnore
     val status: TaskType? = TaskType.WAITING,
+    @Transient
     @JsonIgnore
     val average: Double?
 ) {
