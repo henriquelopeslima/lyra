@@ -1,7 +1,25 @@
 # LYRA
 
+	No mundo existem dois tipos de pessoas, as que demoram pensando em um nome...
+	E as pessoas que sentem se a vontades com nomes aleatorios. E Lyra é um deles.
+
+![Estrutura](./assets/lyra-estrutura.png)
+
+Caso deseje acessar o
+[arquivo original do trabalho](./assets/description.pdf)
+
+
+## Tecnologias 
+- Docker e Docker Compose
+- Kotlin (Spring boot)
+- Kafka
+- Dart
+
+
 ## Definições
-	O estilo de arquitetura implementado no sistema é orientado a eventos e microserviço. Foi escolhido a aborgadem de um sistema Coreógrafo. Para definir os componentes do sistema foi submetido ao processo da Workflow.
+	O estilo de arquitetura implementado no sistema é orientado a eventos e microserviço. 
+	Foi escolhido a aborgadem de um sistema Coreógrafo. 
+	Para definir os componentes do sistema foi submetido ao processo da Workflow.
 
 ### Dominio
 - Atividade
@@ -39,13 +57,21 @@
 	- Correção das atividades
 	- Notificar
 
+- Teste (Opcional)
+	- Criar atividades e respondê-las.
+
 ### Virtualização
-	Foi criado imagens personalizadas para cada serviço que estão descritas em dockerfile e temos um docker-compose que iria gerenciar tudo isso.
+	Foi criado imagens personalizadas para cada serviço que estão descritas em dockerfile 
+	e temos um docker-compose que iria gerenciar tudo isso.
 
 ### Como usar?
 	Para facilitar foi criado um make que faz tudo para você!
-	Basta digita "make run", ou então, caso queira ver mais possibilidades make help.
+	Basta digita "make up", ou então, caso queira ver mais possibilidades make help.
+	Caso realize mudança no cod fonte dos serviços deverá então ser novamente
+	gerado o binário. Caso seja computados permita tente realizar um "make run".
 
 ### O Workspace para testes
-	O workspace Insomnia foi colocado internamente no projeto, caso queira testar basta importar.
+	O workspace Insomnia foi colocado internamente no projeto, nas pasta de assets, caso queira testar basta importar.
  
+ ### Comunidade
+	Caso alguém se interesse em realizar melhorias, basta abrir uma "issue" ou então dá um "fork" e manda a "PR" pro pai.
