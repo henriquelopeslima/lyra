@@ -71,7 +71,9 @@ Caso deseje acessar o
 	gerado o binário. Caso seja computados permita tente realizar um "make run".
 
 ### O Workspace para testes
-	O workspace Insomnia foi colocado internamente no projeto, nas pasta de assets, caso queira testar basta importar.
+	O workspace Insomnia foi colocado internamente no projeto, nas pasta de assets, 
+	caso queira testar basta importar.
  
  ### Comunidade
-	Caso alguém se interesse em realizar melhorias, basta abrir uma "issue" ou então dá um "fork" e manda a "PR" pro pai.
+	Caso alguém se interesse em realizar melhorias, basta abrir uma "issue" ou então 
+	dá um "fork" e manda a "PR" pro pai.
